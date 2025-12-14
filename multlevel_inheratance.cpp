@@ -17,7 +17,7 @@ class student
         cout<<"USN: "<<usn<<endl;
     }
 };
-class test
+class test:public student
 {
     private :
     int sub1,sub2;
@@ -41,15 +41,34 @@ class test
         return sub2;
     }
 };
-class result:public student,public test
+class sportsmarks
+{
+    private :
+    int sports;
+    public:
+    void getsportsmarks(int s)
+    {
+        sports=s;
+    }
+    void displays()
+    {
+        cout<<"Sports Marks: "<<sports<<endl;
+    }
+    int sub3()
+    {
+        return sports;
+    }
+};
+class result:public test,public sportsmarks
 {
     private :
     int total;
     public:
     void displayresult()
     {
-        total=getsub1()+getsub2();
+        total=getsub1()+getsub2()+sub3();
         display();
+        displays();
         displaymarks();
         cout<<"Total Marks: "<<total<<endl;
     }
@@ -65,6 +84,10 @@ int main()
     cout<<"Enter the marks in two subjects:";
     int s1,s2;
     cin>>s1>>s2;
+    cout<<"Enter the sports marks:";
+    int sm;
+    cin>>sm;
+    re.getsportsmarks(sm);
    re.getmarks(s1,s2);
    re.displayresult();
    return 0;
